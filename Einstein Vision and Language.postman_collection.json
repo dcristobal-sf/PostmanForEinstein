@@ -1,6 +1,6 @@
-{
+
 	"info": {
-		"_postman_id": "8a14433b-3925-4b37-bd8b-ce2c4c01c509",
+		"_postman_id": "ab3dc1d7-41c4-4d54-8576-26ad05381741",
 		"name": "Einstein Vision and Language",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -211,9 +211,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Examples",
@@ -256,9 +254,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Training",
@@ -355,9 +351,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Models",
@@ -475,9 +469,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Predictions",
@@ -561,10 +553,7 @@
 											"type": "file",
 											"src": "/Users/dschultz/GoogleDrive/Emerging Tech/projects/vision samples/object detection/alpine.jpg"
 										}
-									],
-									"options": {
-										"formdata": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "https://api.einstein.ai/v2/vision/detect",
@@ -624,10 +613,72 @@
 											"value": "text",
 											"type": "text"
 										}
+									]
+								},
+								"url": {
+									"raw": "https://api.einstein.ai/v2/vision/ocr",
+									"protocol": "https",
+									"host": [
+										"api",
+										"einstein",
+										"ai"
 									],
-									"options": {
-										"formdata": {}
+									"path": [
+										"v2",
+										"vision",
+										"ocr"
+									]
+								},
+								"description": "API Documentation: [Detect Text](https://metamind.readme.io/reference#detect-text-in-image)"
+							},
+							"response": []
+						},
+						{
+							"name": "Predict OCR Custom Form",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									},
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
 									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "sampleContent",
+											"type": "file",
+											"src": "UdEouqSU8/IMG_0515.jpg"
+										},
+										{
+											"key": "sampleLocation",
+											"value": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/ReceiptSwiss.jpg/170px-ReceiptSwiss.jpg",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "modelId",
+											"value": "OCRModel",
+											"type": "text"
+										},
+										{
+											"key": "task",
+											"value": "form",
+											"type": "text"
+										},
+										{
+											"key": "formTemplateContent",
+											"value": "{\"Fields\": \n[{\"key\": {\"text\": [\"Fecha de Factura\", \"invoice date:\"], \"ner_tag_list\": [\"date\"], \"entity\": \"fecha_fac\"}},\n{\"key\": {\"text\": [\"Linea Fija\"], \"ner_tag_list\": [\"cardinal\"], \"entity\": \"linea\"}}, \n{\"key\": {\"text\": [\"Cuotas Mensuales\"], \"ner_tag_list\": [\"cardinal\"], \"entity\": \"cuotas\"}}], \"Version\": \"2.0\", \"Tables\": []}",
+											"type": "text"
+										}
+									]
 								},
 								"url": {
 									"raw": "https://api.einstein.ai/v2/vision/ocr",
@@ -669,12 +720,12 @@
 										{
 											"key": "sampleContent",
 											"type": "file",
-											"src": [],
+											"src": "RWZkA384H/IMG_0515.pdf",
 											"disabled": true
 										},
 										{
 											"key": "sampleLocation",
-											"value": "",
+											"value": "https://dcristobucket.s3.eu-west-1.amazonaws.com/OCR/IMG_0515.pdf",
 											"type": "text"
 										},
 										{
@@ -776,13 +827,75 @@
 								"description": "API Documentation: [Detect Text](https://metamind.readme.io/reference#detect-text-in-image)"
 							},
 							"response": []
+						},
+						{
+							"name": "Predict OCR Form Invoice",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "multipart/form-data"
+									},
+									{
+										"key": "Cache-Control",
+										"type": "text",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "sampleLocation",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "sampleContent",
+											"type": "file",
+											"src": "r1AP1w813/IMG_0515.jpg"
+										},
+										{
+											"key": "modelId",
+											"value": "tabulatev2",
+											"type": "text"
+										},
+										{
+											"key": "task",
+											"value": "invoice",
+											"type": "text"
+										},
+										{
+											"key": "formTemplate",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.einstein.ai/v2/vision/ocr",
+									"protocol": "https",
+									"host": [
+										"api",
+										"einstein",
+										"ai"
+									],
+									"path": [
+										"v2",
+										"vision",
+										"ocr"
+									]
+								},
+								"description": "API Documentation: [Detect Text](https://metamind.readme.io/reference#detect-text-in-image)"
+							},
+							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Language",
@@ -990,9 +1103,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Examples",
@@ -1141,9 +1252,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Training",
@@ -1239,9 +1348,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Models",
@@ -1359,9 +1466,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Predictions",
@@ -1508,12 +1613,9 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "00 - KJUR",
@@ -1521,7 +1623,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "bc3f4b00-41d4-46d1-a552-337cd49c0881",
 						"exec": [
 							"pm.globals.set(\"jsrsasign-js\", responseBody);"
 						],
@@ -1533,8 +1634,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js",
-					"protocol": "http",
+					"raw": "https://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js",
+					"protocol": "https",
 					"host": [
 						"kjur",
 						"github",
@@ -1555,7 +1656,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "e5e2b984-2147-4a9c-a52f-d12f20cc3628",
 						"exec": [
 							"// Retrieve the KJUR library",
 							"var navigator = {};",
@@ -1615,7 +1715,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "36404b96-921f-4651-bbef-7aa0485b0bd8",
 						"exec": [
 							"// Retrieve the access token from the response and save as an environment variable",
 							"var jsonData = pm.response.json();",
@@ -1723,7 +1822,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "5edb6426-0570-42b3-b6ce-da67671974ca",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1733,7 +1831,6 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "97b62a20-3833-492e-af2c-306f29c6bf73",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1741,5 +1838,16 @@
 			}
 		}
 	],
-	"protocolProfileBehavior": {}
+	"variable": [
+		{
+			"key": "username",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "privateKey",
+			"value": "",
+			"type": "string"
+		}
+	]
 }
